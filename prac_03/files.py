@@ -35,7 +35,7 @@ def program04():
     print(total)
 
 
-# program01()
-# program02()
-# program03()
+program01()
+program02()
+program03()
 program04()
