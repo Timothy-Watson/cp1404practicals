@@ -34,8 +34,7 @@ for i, number in enumerate(numbers, 1):
 
 # TODO: Use f-string formatting to produce the output:
 # 1922 Gibson L-5 CES for about $16,036!
-cost = int(cost)
-print(f"{year} {name} for about ${cost[-1, -4]}")
+print(f"{year} {name} for about ${cost:,}")
 
 # TODO: Using a for loop with the range function and f-string formatting,
 # produce the following right-aligned output (DO NOT use a list):
