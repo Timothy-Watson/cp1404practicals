@@ -15,7 +15,7 @@ def program01():
 
 
 def program02():
-    """"""
+    """Read a file and print the contents"""
     in_file = open(FILENAME01, 'r')
     print(f"Hi {in_file.readline().strip()}!")
     in_file.close()
@@ -27,6 +27,15 @@ def program03():
         print(result)
 
 
+def program04():
+    total = 0
+    with open(FILENAME02) as in_file:
+        for line in in_file:
+            total = total + int(line)
+    print(total)
+
+
 # program01()
 # program02()
-program03()
+# program03()
+program04()
