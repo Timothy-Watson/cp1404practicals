@@ -3,9 +3,9 @@ CP1404/CP5632 - Practical
 Password checker "skeleton" code to help you get started
 """
 
-MIN_LENGTH = 2
-MAX_LENGTH = 6
-IS_SPECIAL_CHARACTER_REQUIRED = False
+MIN_LENGTH = 5
+MAX_LENGTH = 8
+IS_SPECIAL_CHARACTER_REQUIRED = True
 SPECIAL_CHARACTERS = "!@#$%^&*()_-=+`~,./'[]<>?{}|\\"
 
 
@@ -27,17 +27,25 @@ def main():
 
 def is_valid_password(password):
     """Determine if the provided password is valid."""
-    # TODO: if length is wrong, return False
 
     number_of_lower = 0
     number_of_upper = 0
     number_of_digit = 0
     number_of_special = 0
     for character in password:
-        # TODO: count each kind of character (use str methods like isdigit)
-        pass
+        if character.isupper():
+            number_of_upper += 1
+        if character.islower():
+            number_of_lower += 1
+        if character.isdigit():
+            number_of_digit += 1
+        if character in SPECIAL_CHARACTERS:
+            number_of_special += 1
 
-    # TODO: if any of the 'normal' counts are zero, return False
+    if number_of_upper == 0 or number_of_lower == 0 or number_of_digit == 0:
+        return False
+    if IS_SPECIAL_CHARACTER_REQUIRED and number_of_special == 0:
+        return False
 
     # TODO: if special characters are required, then check the count of those
     # and return False if it's zero
