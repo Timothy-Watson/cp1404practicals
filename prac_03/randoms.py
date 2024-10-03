@@ -10,3 +10,4 @@ print(random.randrange(3, 10, 2))  # line 2, I got the number "9". Smallest and 
 print(random.uniform(2.5, 5.5))  # line 3, I got the number "3.7700981719816413".
 # The smallest and largest numbers this code can receive is 2.5000000000000000 and 5.5000000000000000.
 
+print(random.randint(1, 100))
