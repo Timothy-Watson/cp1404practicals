@@ -13,8 +13,14 @@ def main():
         picks = []
         for j in range(NUMBER_OF_PICKS):
             random_number = random.randint(RANDOM_LOW, RANDOM_HIGH)
+            while random_number in picks:
+                random_number = random.randint(RANDOM_LOW, RANDOM_HIGH)
             picks.append(random_number)
-        print(picks)
+        picks.sort()
+        for pick in picks:
+            print(f"{pick:2}", end=" ")
+        print()
+
 
 
 main()
