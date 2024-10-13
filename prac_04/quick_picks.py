@@ -4,11 +4,17 @@ import random
 
 RANDOM_LOW = 1
 RANDOM_HIGH = 45
-NUMBER_OF_COLUMNS = 6
+NUMBER_OF_PICKS = 6
 
 
 def main():
     number_of_quick_picks = int(input("How many quick picks? "))
+    for i in range(number_of_quick_picks):
+        picks = []
+        for j in range(NUMBER_OF_PICKS):
+            random_number = random.randint(RANDOM_LOW, RANDOM_HIGH)
+            picks.append(random_number)
+        print(picks)
 
 
 main()
