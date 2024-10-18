@@ -16,5 +16,6 @@ for word in words:
         word_to_count[word] = 1
 words = [word for word in word_to_count]
 words.sort()
+width = max([len(word) for word in words])
 for word in words:
-    print(f"{word} : {word_to_count[word]}")
+    print(f"{word:>{width}} : {word_to_count[word]}")
