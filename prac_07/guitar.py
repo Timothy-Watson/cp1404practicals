@@ -1,11 +1,7 @@
 """
 CP1404 practical - Guitar
-expected time to complete - 30 min
-start time - 10:00PM
-finish time - 10:53PM
-time to complete - 53 min
+This is a guitar class
 """
-import datetime
 
 
 class Guitar:
@@ -20,6 +16,9 @@ class Guitar:
     def __repr__(self):
         return str(self)
 
+    def __lt__(self, other):
+        return self.year < other.year
+
     def get_age(self):
         return 2024 - self.year
 
@@ -28,4 +27,3 @@ class Guitar:
             return True
         else:
             return False
-
