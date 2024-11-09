@@ -12,3 +12,6 @@ class Project:
         self.priority = int(priority)
         self.cost_estimate = float(cost_estimate)
         self.completion_percentage = int(completion_percentage)
+
+    def __repr__(self):
+        return f"{vars(self)}"
