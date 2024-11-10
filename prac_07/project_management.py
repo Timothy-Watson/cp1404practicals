@@ -35,17 +35,18 @@ def main():
         elif choice == "S":
             pass
         elif choice == "D":
-            projects = sorted(load_projects(filename), key=lambda x: x.priority)
+            projects = sorted(projects, key=lambda x: x.priority)
             display_projects(projects)
         elif choice == "F":
             date_string = input("Show projects that start after date (dd/mm/yy): ")
-            projects = sorted(load_projects(filename), key=lambda x: x.start_date)
+            projects = sorted(projects, key=lambda x: x.start_date)
             date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
             filtered_projects = filter_projects(date, projects)
             for project in filtered_projects:
                 print(project)
         elif choice == "A":
-            pass
+            new_project = add_new_project()
+            projects.append(new_project)
         elif choice == "U":
             pass
         else:
@@ -54,12 +55,25 @@ def main():
         choice = input(">>> ").upper()
 
 
+def add_new_project():
+    """Adds a new project"""
+    print("Let's add a new project")
+    name = input("Name: ")
+    start_date = input("Start date (dd/mm/yyyy): ")
+    priority = input("Priority: ")
+    cost = input("Cost estimate: $")
+    percent_complete = input("Percent complete: ")
+    return Project(name, start_date, priority, cost, percent_complete)
+
+
 def filter_projects(date, projects):
     """Filter projects if they are started after date"""
     filtered_projects = []
     for project in projects:
         if datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() > date:
             filtered_projects.append(project)
+    # The sample output is wrong because you say to sort by projects that start AFTER the date.
+    # In the example it shows a project the starts on the date
     return filtered_projects
 
 
