@@ -9,7 +9,6 @@ estimated time - 60 min
 import datetime
 from project import Project
 
-FILENAME = "projects.txt"
 MENU = """- (L)oad projects
 - (S)ave projects
 - (D)isplay projects
@@ -20,19 +19,22 @@ MENU = """- (L)oad projects
 
 def main():
     """Project program with many options"""
+    filename = "projects.txt"  # set default filename
+
     print("Welcome to Pythonic Project Management")
-    projects = load_projects(FILENAME)
-    print(f"Loaded {len(projects)} projects from {FILENAME}")
+    projects = load_projects(filename)
+    print(f"Loaded {len(projects)} projects from {filename}")
 
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            pass
+            filename = input("Enter a file name: ")
+            load_projects(filename)
         elif choice == "S":
             pass
         elif choice == "D":
-            pass
+            display_projects(filename)
         elif choice == "F":
             pass
         elif choice == "A":
@@ -41,6 +43,24 @@ def main():
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
+
+
+def display_projects(filename):
+    """Loads and displays projects sorted by priority and grouped by completion"""
+    incomplete_projects = []
+    complete_projects = []
+    projects = sorted(load_projects(filename))
+    for project in projects:
+        if project.completion_percentage == 100:
+            complete_projects.append(project)
+        else:
+            incomplete_projects.append(project)
+    print("Incomplete projects:")
+    for project in incomplete_projects:
+        print(project)
+    print("Complete projects:")
+    for project in complete_projects:
+        print(project)
 
 
 def load_projects(filename):
