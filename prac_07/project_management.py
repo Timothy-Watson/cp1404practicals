@@ -35,9 +35,15 @@ def main():
         elif choice == "S":
             pass
         elif choice == "D":
-            display_projects(filename)
+            projects = sorted(load_projects(filename), key=lambda x: x.priority)
+            display_projects(projects)
         elif choice == "F":
-            pass
+            date_string = input("Show projects that start after date (dd/mm/yy): ")
+            projects = sorted(load_projects(filename), key=lambda x: x.start_date)
+            date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+            filtered_projects = filter_projects(date, projects)
+            for project in filtered_projects:
+                print(project)
         elif choice == "A":
             pass
         elif choice == "U":
@@ -48,11 +54,19 @@ def main():
         choice = input(">>> ").upper()
 
 
-def display_projects(filename):
+def filter_projects(date, projects):
+    """Filter projects if they are started after date"""
+    filtered_projects = []
+    for project in projects:
+        if datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date() > date:
+            filtered_projects.append(project)
+    return filtered_projects
+
+
+def display_projects(projects):
     """Loads and displays projects sorted by priority and grouped by completion"""
     incomplete_projects = []
     complete_projects = []
-    projects = sorted(load_projects(filename))
     for project in projects:
         if project.completion_percentage == 100:
             complete_projects.append(project)
