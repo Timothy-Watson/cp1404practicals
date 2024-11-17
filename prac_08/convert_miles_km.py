@@ -17,14 +17,20 @@ class MilesToKM(App):
 
     def handle_increment(self, change):
         """Increment input box by value."""
-        value = float(self.root.ids.input_miles.text) + change
+        value = self.get_valid_miles() + change
         self.root.ids.input_miles.text = str(value)
 
     def handle_calculate(self):
         """Handle the calculation from miles to kilometers."""
-        miles = float(self.root.ids.input_miles.text)
+        miles = self.get_valid_miles()
         kilometers = miles * MILES_TO_KM
         self.output_label = str(kilometers)
+
+    def get_valid_miles(self):
+        try:
+            return float(self.root.ids.input_miles.text)
+        except ValueError:
+            return 0
 
 
 MilesToKM().run()
