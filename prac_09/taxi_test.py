@@ -1,3 +1,7 @@
+"""
+CP1404 Practical
+A test program for the taxi class
+"""
 from taxi import Taxi
 
 my_taxi = Taxi("Prius 1", 100, 1.23)
